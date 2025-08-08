@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products - GEO's Mods</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <img src="https://media.discordapp.net/attachments/1029078951873761491/1318675741038215188/fox_logo_done.png" alt="Geo's Mods Logo" />
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="index.html#about">About Us</a>
+    </nav>
+  </header>
+
+  <section class="product-section">
+    <h2 class="product-title">Our Products</h2>
+    <div class="product-grid" id="productGrid"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 GEO's Mods. Designed with passion by Phillip & the GEO team.
+  </footer>
+
+  <script>
+    fetch('products.json')
+      .then(response => response.json())
+      .then(products => {
+        const grid = document.getElementById('productGrid');
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.title}" />
+            <h3>${product.title}</h3>
+            <p>${product.description}</p>
+            <div class="price">${product.price}</div>
+          `;
+          grid.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>
